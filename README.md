@@ -1,5 +1,9 @@
 # esp32cam_AI
 Плата разработчика для тестирования технологии ИИ EDGE IMPULSE на чипе esp32.<br>
+Edge Impulse (https://www.edgeimpulse.com/) — это еще одно решение, которое призвано упростить развертывание приложений
+машинного обучения на встроенных устройствах на основе ядра Cortex-M (также называемых Embedded ML или TinyML)
+путем сбора реальных данных датчиков, обучения ML-моделей этим данным в облаке и последующего развертывания
+модели на встроенном устройстве.<br>
 
 <br>
 В качестве ядра используется готовая плата esp32cam (https://iarduino.ru/shop/boards/kontroller-esp32-cam-s-kameroy-ov2640.html) купленная на ali.
@@ -10,5 +14,14 @@
 - два светодиода <br>
 <br>
 Внешний вид платы ver 1.0: <br>
-<img src="https://github.com/pav2000/esp32cam_AI/main/Board/view01.jpg" width="480" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/main/Board/view01.png" width="480" /> <br>
 <img src="https://github.com/pav2000/esp32cam_AI/blob/main/Board/view02.png" width="480" /> <br>
+<br>
+Полезные ссылки:<br>
+https://www.hackster.io/mjrobot/esp32-cam-tinyml-image-classification-fruits-vs-veggies-4ab970
+https://www.survivingwithandroid.com/esp32-anomaly-detection-edge-impulse-machine-learning/<br>
+https://www.hackster.io/news/edge-impulse-announces-official-espressif-esp32-support-releases-open-source-esp-eye-firmware-b626af54d66e<br>
+https://docs.edgeimpulse.com/docs/deployment/running-your-impulse-locally/running-your-impulse-esp32<br>
+https://scrobotics.es/2021/07/08/using-edge-impulse-on-an-esp32/<br>
+https://www.theamplituhedron.com/articles/How_to_run_the_Edge_Impulse_ESP_EYE_firmware_on_FireBeetle_ESP32/
+https://www.bouvet.no/bouvet-deler/machine-learning-with-esp32
