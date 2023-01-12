@@ -29,9 +29,12 @@ Edge Impulse (https://www.edgeimpulse.com/) — это еще одно реше�
 - выход UART на ft232rl для программирования и отладки <br>
 - один светодиод <br>
 <br>
-Внешний вид платы ver 1.0: <br>
+Внешний вид платы ver 1.0:<br>
 <img src="https://github.com/pav2000/esp32cam_AI/blob/main/Board/view01.png" width="480" /> <br>
 <img src="https://github.com/pav2000/esp32cam_AI/blob/main/Board/view02.png" width="480" /> <br>
+Плата в собранном виде:<br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Board/board01.png" width="480" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Board/board02.png" width="480" /> <br>
 <br>
 Полезные ссылки:<br>
 https://www.hackster.io/mjrobot/esp32-cam-tinyml-image-classification-fruits-vs-veggies-4ab970
