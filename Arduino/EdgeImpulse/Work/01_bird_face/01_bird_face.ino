@@ -33,27 +33,13 @@ TFT_eSPI tft = TFT_eSPI();
 #include <TFT_eFEX.h>
 TFT_eFEX  fex = TFT_eFEX(&tft);
 
-const int push_button = 4;
-bool is_start = true;
 bool stream_or_display = true;
-
-unsigned long drawTime = 0;
 
 dl_matrix3du_t *resized_matrix = NULL;
 size_t out_len = EI_CLASSIFIER_INPUT_WIDTH * EI_CLASSIFIER_INPUT_HEIGHT;
 ei_impulse_result_t result = {0};
-
-int tf = 1;
-
-String filelist;
 camera_fb_t * fb = NULL;
-String incoming;
-long current_millis;
-long last_capture_millis = 0;
 static esp_err_t cam_err;
-static esp_err_t card_err;
-char strftime_buf[64];
-long file_number = 0;
 
 // CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM     32
@@ -81,30 +67,19 @@ class aFrameBuffer: public Adafruit_GFX {
     int w;
     int h;
 
-    aFrameBuffer(int16_t ww, int16_t hh): Adafruit_GFX(ww, hh)
-    {
-      w = ww;
-      h = hh;
-      size = h*w;
-      
-    }
+    aFrameBuffer(int16_t ww, int16_t hh): Adafruit_GFX(ww, hh)   {   w = ww;  h = hh;  size = h*w;    }
 
-    void setBuffer(uint8_t *b)
-    {
-      buffer = b;
-    }
+    void setBuffer(uint8_t *b)   {   buffer = b;  }
 
     void drawPixel(int16_t x, int16_t y, uint16_t color)
     {
-      if (x<0 || x >= w || y <0 || y >=h)
-        return;
+      if (x<0 || x >= w || y <0 || y >=h)  return;
       buffer[x +y*w] = color;
     }
 
     uint8_t get(int16_t x, int16_t y)
     {
-      if (x<0 || x >= w || y <0 || y >=h)
-        return 0;
+      if (x<0 || x >= w || y <0 || y >=h)  return 0;
       return buffer[x +y*w];
     }
 };
@@ -112,16 +87,11 @@ class aFrameBuffer: public Adafruit_GFX {
 aFrameBuffer OSD(320, 240);
 
 
-
 void setup() {
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);//disable brownout
   // Set all chip selects high to avoid bus contention during initialisation of each
   digitalWrite( TFT_CS, HIGH); // SD card chips select, must use GPIO 5 (ESP32 SS)
   Serial.begin(115200);
-  
-  
-  pinMode(push_button, INPUT);;// initialize io4 as an output for LED flash.
-  digitalWrite(4, LOW); // flash off/
 
   if (!SPIFFS.begin(true)) {
     Serial.println("SPIFFS initialisation failed!");
@@ -133,9 +103,9 @@ void setup() {
   SPI.begin(TFT_SCLK,TFT_MISO,TFT_MOSI,TFT_CS);
   tft.begin();
   tft.setRotation(0);  // 0 & 2 Portrait. 1 & 3 landscape
-  tft.fillScreen(TFT_BLACK);
-  tft.setCursor(35,55);
-  tft.setTextColor(TFT_WHITE);
+//  tft.fillScreen(TFT_BLACK);
+//  tft.setCursor(35,55);
+//  tft.setTextColor(TFT_WHITE);
   tft.setTextSize(1);
   delay(1000);
 
@@ -160,6 +130,7 @@ void setup() {
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   config.pixel_format =  PIXFORMAT_JPEG;
+  
   //init with high specs to pre-allocate larger buffers
   if (psramFound()) {
     config.frame_size = FRAMESIZE_UXGA;
@@ -181,15 +152,10 @@ void setup() {
   sensor_t * s = esp_camera_sensor_get();
   s->set_framesize(s, FRAMESIZE_QVGA);
   s->set_vflip(s, 1);
+  
+  tft.setTextColor(TFT_GREEN, TFT_BLACK);    tft.setTextFont(1);
 
- // digitalWrite(4, LOW);
-  
-  tft.setTextColor(TFT_GREEN, TFT_BLACK);    tft.setTextFont(4);
-  
- // delay(1000);
   digitalWrite(4, LOW);
-//
- 
    
 }
 
@@ -243,10 +209,8 @@ void classify()
             result.timing.dsp, result.timing.classification, result.timing.anomaly);
   for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
     ei_printf("    %s: \t%f\r\n", result.classification[ix].label, result.classification[ix].value);
- //    tft.setRotation(1); 
     tft.setTextSize(0);
     tft.print(result.classification[ix].label); tft.print(": "); tft.println(result.classification[ix].value);
- //    tft.setRotation(1); 
 //    OSD.print(result.classification[ix].label); OSD.print(": "); OSD.println(result.classification[ix].value);
 //    tft.println(" %s: \t%f\r\n", result.classification[ix].label, result.classification[ix].value);
   }
@@ -271,12 +235,6 @@ void classify_obj()
   if (res != 0)
     return;
 
-  // print the predictions
-//  ei_printf("Predictions (DSP: %d ms., Classification: %d ms., Anomaly: %d ms.): \n",
-//            result.timing.dsp, result.timing.classification, result.timing.anomaly);
-//  for (size_t ix = 0; ix < result.bounding_boxes_count; ix++) {
-//    ei_printf("    %s: \t%f\t%d\t%d\r\n", result.bounding_boxes[ix].label, result.bounding_boxes[ix].value, result.bounding_boxes[ix].x, result.bounding_boxes[ix].y);
-//  }
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
   ei_printf("    anomaly score: %f\r\n", result.anomaly);
 #endif
@@ -298,16 +256,9 @@ void rgb_print(dl_matrix3du_t *image_matrix, uint32_t color, const char * str, i
 
 void loop()
 {
-  
-  int push_button_state  = digitalRead(push_button);
 
-  if(is_start) {
-    push_button_state = true;
-    is_start = false;
-  }
-  
 
-if(stream_or_display) {  //take photo and output to tft.
+if(stream_or_display) {  //Показ картинки с камеры на дисплее
   fb = esp_camera_fb_get();
   if (!fb) {
     Serial.println("Camera capture failed");
@@ -316,7 +267,6 @@ if(stream_or_display) {  //take photo and output to tft.
   esp_camera_fb_return(fb);
   }
   
-//if(push_button_state)
 if(Serial.available()>0) // Если что то послано
 {
   while(Serial.available()) Serial.read(); // Очиста буфера
@@ -324,8 +274,8 @@ if(Serial.available()>0) // Если что то послано
   delay(200);
   stream_or_display = !stream_or_display;
   Serial.print("push button state now stream or display = ");
-//  Serial.println(stream_or_display);
   if(!stream_or_display){
+
   //take phot and stream.
   Serial.println("Capture image");
   fb = esp_camera_fb_get();
@@ -335,9 +285,9 @@ if(Serial.available()>0) // Если что то послано
   }
   fex.drawJpg((const uint8_t*)fb->buf, fb->len, 0, 6);
   Serial.println("Converting to RGB888...");
+
   // Allocate rgb888_matrix buffer
   //do some file stuff here
-  
   dl_matrix3du_t *rgb888_matrix = dl_matrix3du_alloc(1, fb->width, fb->height, 3);
   fmt2rgb888(fb->buf, fb->len, fb->format, rgb888_matrix->item);
 
@@ -345,46 +295,20 @@ if(Serial.available()>0) // Если что то послано
   resized_matrix = dl_matrix3du_alloc(1, EI_CLASSIFIER_INPUT_WIDTH, EI_CLASSIFIER_INPUT_HEIGHT, 3);
   image_resize_linear(resized_matrix->item, rgb888_matrix->item, EI_CLASSIFIER_INPUT_WIDTH, EI_CLASSIFIER_INPUT_HEIGHT, 3, fb->width, fb->height);
   
-  // --- Free memory ---
-
-  dl_matrix3du_free(rgb888_matrix);
-
-  
-//  esp_camera_fb_return(fb);
-
-
-  classify();
-
-//  dl_matrix3du_free(resized_matrix);
-  
+  dl_matrix3du_free(rgb888_matrix); // --- Free memory ---
+  classify(); // Классификация
+ 
   //print to image
   rgb888_matrix = dl_matrix3du_alloc(1, fb->width, fb->height, 3);
   fmt2rgb888(fb->buf, fb->len, fb->format, rgb888_matrix->item);
- 
 
     for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
         char tmp[32];
         sprintf(tmp, "%s: %0.2f", result.classification[ix].label, result.classification[ix].value);
         rgb_print(rgb888_matrix, 0x000000FF, tmp, ix*15 + 2);
       }
-
-//  Serial.println("printing to image");
-//  size_t _jpg_buf_len = 0;
-//  uint8_t * _jpg_buf = NULL;
-
-  
-///  free(fb->buf);
-///  fb->buf = NULL;
-
-//  bool jpeg_converted = fmt2jpg(rgb888_matrix->item, fb->width*fb->height*3, fb->width, fb->height, PIXFORMAT_RGB888, 80, &_jpg_buf, &_jpg_buf_len); //&fb->buf
-//  Serial.println("converted jpg");
-//  dl_matrix3du_free(rgb888_matrix);
-  
-  //more file stuff
-//  file_number++;
   esp_camera_fb_return(fb);
   fb = NULL;
- // delay(500);
 }
 
 }
