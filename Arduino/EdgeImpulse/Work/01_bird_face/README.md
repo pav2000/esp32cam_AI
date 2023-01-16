@@ -8,7 +8,7 @@
 - ланшафт<br>
 Т.к. на макете верх камеры не равен верху дисплея то макет надо тержать разъемом usb вверх для правильной орентации изображения.<br>
 Примеры классификации приведены ниже:<br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/pic1.jpg" width="480" /> <br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/pic2.jpg" width="480" /> <br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/pic3.jpg" width="480" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/Picture/pic1.jpg" width="400" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/Picture/pic2.jpg" width="400" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/Picture/pic3.jpg" width="400" /> <br>
 <br>
