@@ -7,7 +7,7 @@
 - неизвестно (не авто)<br>
 Т.к. на макете верх камеры не равен верху дисплея то макет надо тержать разъемом usb вверх для правильной орентации изображения.<br>
 Примеры классификации приведены ниже:<br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/02_car_detect/Picture/pic1.jpg" width="400" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/02_car_detect/Picture/pic1.jpg" width="400" /> <br>
 <br>
 <br>
 <br>

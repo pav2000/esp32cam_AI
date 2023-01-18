@@ -8,9 +8,9 @@
 - ланшафт<br>
 Т.к. на макете верх камеры не равен верху дисплея то макет надо тержать разъемом usb вверх для правильной орентации изображения.<br>
 Примеры классификации приведены ниже:<br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/Picture/pic1.jpg" width="400" /> <br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/Picture/pic2.jpg" width="400" /> <br>
-<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/Work/01_bird_face/Picture/pic3.jpg" width="400" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/01_bird_face/Picture/pic1.jpg" width="400" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/01_bird_face/Picture/pic2.jpg" width="400" /> <br>
+<img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/01_bird_face/Picture/pic3.jpg" width="400" /> <br>
 <br>
 В начале при компиляции была ошибка: <br>
 …NNSupportFunctions\arm_nn_accumulate_q7_to_q15.c:57:22: error: implicit declaration of function ‘__PKHTB’ [-Werror=implicit-function-declaration]<br>
