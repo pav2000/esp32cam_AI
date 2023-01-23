@@ -64,6 +64,16 @@ boolean takeNewPhoto = false;
 //Stores the camera configuration parameters
 camera_config_t config;
 
+// Функция показа информации освободной памяти
+void  showMemory()
+{ 
+  Serial.println("Memory (bytes) --------");	
+  Serial.print("FreeHeap=");Serial.print(ESP.getFreeHeap()); 
+  Serial.print("  MinFreeHeap=");Serial.print(ESP.getMinFreeHeap()); 
+  Serial.print("  HeapSize=");Serial.print(ESP.getHeapSize()); 
+  Serial.print("  MaxAllocHeap=");Serial.println(ESP.getMaxAllocHeap()); 
+}
+
 void setup() {
   Serial.begin(115200);
   delay(100);
@@ -122,6 +132,7 @@ void setup() {
 
   server.begin();
   Serial.println("HTTP server started");
+  showMemory();
 }
 
 void loop() {
