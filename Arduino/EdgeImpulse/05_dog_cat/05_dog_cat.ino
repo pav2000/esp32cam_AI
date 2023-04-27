@@ -91,8 +91,13 @@ void setup() {
   tft.begin();
   tft.setRotation(0);  // 0 & 2 Portrait. 1 & 3 landscape
   tft.setTextSize(1);
-  delay(500);
-
+  tft.fillScreen(ST7735_BLACK); // Заставка
+  tft.setCursor(20, 40, 2);
+  tft.println("#5 Dog & Cat");
+  tft.setCursor(20, 60, 2);
+  tft.println("Start camera");
+  delay(2000);
+  
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;

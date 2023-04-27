@@ -1,5 +1,7 @@
-ВНИМАНИЕ! sdk esp32 2.0.5!!!!
+ВНИМАНИЕ! sdk esp32 2.0.5 or 2.0.8.!!!!
 Тестировался в arduino ide 1.8.9 (1.8.19), sdk esp32 2.0.5. Выбрана плата "ESPЗ2 Dev Module", PSARAM "Enable" <br>
+27/04/23 протестировано ide 1.8.9, sdk esp32 2.0.8. Выбрана плата "ESPЗ2 Wrover Module" Flash QIO, 80MHz<br>
+<br>
 Библиотека (a2023_dog_cat_inferencing.zip) получена из среды Edge Impulse в январе 2023 года требует корректировки:<br>
 1. В файле a2023_dog_cat_inferencing/src/edge-impulse-sdk/porting/espressif/ESP-NN/src/common/common_functions.h<br>
 Необходимо удалить код двух функций (оставить только их определение):<br>

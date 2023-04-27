@@ -7,8 +7,10 @@
 <img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/05_dog_cat/Picture/pic4.jpg" width="480" /> <br>
 <img src="https://github.com/pav2000/esp32cam_AI/blob/main/Arduino/EdgeImpulse/05_dog_cat/Picture/pic5.jpg" width="480" /> <br>
 <br>
-ВНИМАНИЕ! sdk esp32 2.0.5!!!!<br>
-Тестировался в arduino ide 1.8.9 (1.8.19), sdk esp32 2.0.5. Выбрана плата "ESPЗ2 Dev Module", PSARAM "Enable"
+ВНИМАНИЕ! sdk esp32 2.0.5 or 2.0.8!!!!<br>
+Тестировался в arduino ide 1.8.9 (1.8.19), sdk esp32 2.0.5. Выбрана плата "ESPЗ2 Dev Module", PSARAM "Enable"<br>
+27/04/23 протестировано ide 1.8.9, sdk esp32 2.0.8. Выбрана плата "ESPЗ2 Wrover Module" Flash QIO, 80MHz<br>
+<br>
 Камера показывает изображение (2-3 кадра в секунду), при посылке любого символа (например Enter) в последовательный порт
 происходит фиксация изображения и его классификация через библиотеку Edge Impulse и выдача результатов (на экран и в последовательный порт).
 При посылке еще одного символа камера снова показывает текущее изображение (частота около 2 кадров в секунду)<br>

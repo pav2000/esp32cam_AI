@@ -1,4 +1,7 @@
-ВНИМАНИЕ! sdk esp32 2.0.5!!!!
+ВНИМАНИЕ! sdk esp32 2.0.5 or 2.0.8.!!!!
+Тестировался в arduino ide 1.8.9 (1.8.19), sdk esp32 2.0.5. Выбрана плата "ESPЗ2 Dev Module", PSARAM "Enable" <br>
+27/04/23 протестировано ide 1.8.9, sdk esp32 2.0.8. Выбрана плата "ESPЗ2 Wrover Module" Flash QIO, 80MHz<br>
+<br>
 Тестировался в arduino ide 1.8.9 (1.8.19), sdk esp32 2.0.5. Выбрана плата "ESPЗ2 Dev Module", PSARAM "Enable" <br>
 Библиотека полученна из среды Edge Impulse в январе 2023 года(файл bird_classification_3_inferencing.zip) требует корректировки:<br>
 1. В файле bird_classification_3_inferencing/src/edge-impulse-sdk/porting/espressif/ESP-NN/src/common/common_functions.h<br>
